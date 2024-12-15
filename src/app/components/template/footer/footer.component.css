@@ -1,0 +1,9 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+
+    background-color: grey;
+
+    display: flex;
+    width: 100%;
+}
