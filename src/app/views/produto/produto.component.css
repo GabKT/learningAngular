@@ -1,21 +1,25 @@
 main {
     display: flex;
     flex-direction: row;
-    height: 94%;
     border-top: solid 1px blue;
+    height: 100%;
 }
 
 .filterSection {
     display: flex;
-    flex-grow: 0.33;
+    flex-basis: 18%;
+    flex-grow: 0;
+    flex-shrink: 0;
     justify-content: center;
     border-right: solid 1px black;
     padding: 10px;
 }
 
 .productList {
-    flex-grow: 1;
-    background-color: rgb(222, 222, 222);
+    flex-basis: 80%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    background-color: rgb(236, 236, 236);
 }
 
 .headerSearch {
@@ -32,4 +36,11 @@ main {
 
 mat-form-field {
     flex-grow: 0.7;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    padding: 36px;
 }
