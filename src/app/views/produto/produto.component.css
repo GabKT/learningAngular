@@ -1,7 +1,6 @@
 main {
     display: flex;
     flex-direction: row;
-    border-top: solid 1px blue;
     height: 100%;
 }
 

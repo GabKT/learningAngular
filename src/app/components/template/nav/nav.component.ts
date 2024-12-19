@@ -22,6 +22,8 @@ export class NavComponent {
           this.selectedTabIndex = 0;
         } else if (event.url.includes('produto')) {
           this.selectedTabIndex = 1;
+        } else if (event.url.includes('produto/criar')) {
+          this.selectedTabIndex = 1;
         }
       }
     });

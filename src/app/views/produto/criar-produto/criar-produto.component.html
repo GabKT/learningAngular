@@ -1,0 +1,61 @@
+<main>
+    <header>
+        <button mat-flat-button (click)="mainViewProduto()">
+            <mat-icon>
+                keyboard_backspace
+            </mat-icon>
+            Voltar
+        </button>
+        <h2>Cadastrar novo produto</h2>
+    </header>
+    <div class="content">
+        <div class="form-section">
+            <p>criar-produto works!</p>
+            <form>
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nome</mat-label>
+                        <input matInput>
+                    </mat-form-field>
+                </p>
+
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Categoria</mat-label>
+                        <input matInput type="text" name="" id="">
+                    </mat-form-field>
+                </p>
+
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Preço</mat-label>
+                        <input matInput type="text" name="" id="">
+                    </mat-form-field>
+                </p>
+
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Tamanho</mat-label>
+                        <mat-select>
+                            @for(value of tamanhos; track value){
+                            <mat-option [value]="value">{{value}}</mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+
+                <p>
+                    <span>Imagem selecionada: {{ selectedFile ? selectedFile.name : 'nada' }}</span><br>
+                    <input #fileInput type="file" accept="image/*" hidden (change)="onSelectedFile($event)" />
+                    <button mat-stroked-button type="button" (click)="fileInput.click()">
+                        <mat-icon>cloud_upload</mat-icon>
+                        Adicionar imagem
+                    </button>
+                </p>
+                <button mat-flat-button color="primary">Cadastrar</button>
+            </form>
+
+        </div>
+        <img [src]=[base64Image] alt="">
+    </div>
+</main>

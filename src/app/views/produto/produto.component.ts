@@ -7,6 +7,7 @@ import { CardComponent } from './card/card.component';
 import { ProdutoService } from './produto.service';
 import { Produto } from './produto.model';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,12 +27,16 @@ export class ProdutoComponent {
 
   produtos: Produto[] = [];
 
-  constructor(private produtoService: ProdutoService) { }
+  constructor(private produtoService: ProdutoService, private router: Router) { }
 
   ngOnInit() {
     this.produtoService.getAllProducts().subscribe({
       next: (data: Produto[]) => this.produtos = data,
       error: (err) => console.error("erro ao carregar produtos", err)
     });
+  }
+
+  viewCriarProduto() {
+    this.router.navigate(["/produto/criar"]);
   }
 }

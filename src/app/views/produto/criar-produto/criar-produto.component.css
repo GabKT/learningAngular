@@ -1,0 +1,38 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    gap: 25px;
+}
+
+h2 {
+    margin-top: 14px;
+}
+
+.content {
+    display: flex;
+    padding: 10px 30px;
+    width: 96%;
+}
+
+.form-section {
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-direction: column;
+    flex-basis: 20%;
+}
+
+img {
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 10%;
+    max-width: 400px;
+    max-height: 400px;
+}
