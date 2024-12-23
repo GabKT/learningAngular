@@ -11,32 +11,32 @@
     <div class="content">
         <div class="form-section">
             <p>criar-produto works!</p>
-            <form>
+            <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
                 <p>
                     <mat-form-field appearance="outline">
                         <mat-label>Nome</mat-label>
-                        <input matInput>
+                        <input matInput formControlName="nome">
                     </mat-form-field>
                 </p>
 
                 <p>
                     <mat-form-field appearance="outline">
                         <mat-label>Categoria</mat-label>
-                        <input matInput type="text" name="" id="">
+                        <input matInput type="text" name="" id="" formControlName="categoria">
                     </mat-form-field>
                 </p>
 
                 <p>
                     <mat-form-field appearance="outline">
                         <mat-label>Preço</mat-label>
-                        <input matInput type="text" name="" id="">
+                        <input matInput type="text" name="" id="" formControlName="preco">
                     </mat-form-field>
                 </p>
 
                 <p>
                     <mat-form-field appearance="outline">
                         <mat-label>Tamanho</mat-label>
-                        <mat-select>
+                        <mat-select formControlName="tamanho">
                             @for(value of tamanhos; track value){
                             <mat-option [value]="value">{{value}}</mat-option>
                             }
@@ -52,7 +52,7 @@
                         Adicionar imagem
                     </button>
                 </p>
-                <button mat-flat-button color="primary">Cadastrar</button>
+                <button mat-flat-button color="primary" type="submit">Cadastrar</button>
             </form>
 
         </div>

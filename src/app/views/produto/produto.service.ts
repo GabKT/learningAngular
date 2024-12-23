@@ -14,4 +14,8 @@ export class ProdutoService {
   getAllProducts(): Observable<Produto[]> {
     return this.http.get<Produto[]>(this.baseUrl);
   }
+
+  insertProduct(produto: Produto): Observable<Produto>{
+    return this.http.post<Produto>(this.baseUrl, produto);
+  }
 }
