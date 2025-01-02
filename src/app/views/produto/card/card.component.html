@@ -1,5 +1,8 @@
 <mat-card class="productCard">
-    <img mat-card-image src={{img}}>
+    <div class="imgDiv">
+        <img mat-card-image src={{img}}>
+        <mat-checkbox color="secondary" [(ngModel)]="selected"></mat-checkbox>
+    </div>
     <mat-card-header>
         <mat-card-title>{{ nome }}</mat-card-title>
     </mat-card-header>

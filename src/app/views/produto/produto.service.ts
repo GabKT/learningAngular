@@ -15,7 +15,14 @@ export class ProdutoService {
     return this.http.get<Produto[]>(this.baseUrl);
   }
 
-  insertProduct(produto: Produto): Observable<Produto>{
+  insertProduct(produto: Produto): Observable<Produto> {
     return this.http.post<Produto>(this.baseUrl, produto);
+  }
+
+  deletarRoupas(ids: number[]): Observable<number[]> {
+    const options = {
+      body: ids
+    }
+    return this.http.delete<number[]>(this.baseUrl, options);
   }
 }

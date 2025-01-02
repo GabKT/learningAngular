@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, QueryList, ViewChildren } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,8 +26,12 @@ import { Router } from '@angular/router';
 export class ProdutoComponent {
 
   produtos: Produto[] = [];
+  @ViewChildren(CardComponent) cards!: QueryList<CardComponent>;
 
-  constructor(private produtoService: ProdutoService, private router: Router) { }
+  constructor(
+    private produtoService: ProdutoService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.produtoService.getAllProducts().subscribe({
@@ -36,7 +40,19 @@ export class ProdutoComponent {
     });
   }
 
+  deletarProdutos() {
+    const cardsSelecteds = this.cards.filter(e => e.selected == true).map(e => e.id);
+    this.produtoService.deletarRoupas(cardsSelecteds).subscribe({
+      next: (deletedIds: number[]) => {
+        alert(deletedIds.length + " produtos deletados");
+        this.produtos = this.produtos.filter(produto => !deletedIds.includes(produto.id));
+      },
+      error: (error) => console.error("Erro ao deletar: ", error)
+    });
+  }
+
   viewCriarProduto() {
     this.router.navigate(["/produto/criar"]);
   }
+
 }
