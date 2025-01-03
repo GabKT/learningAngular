@@ -8,6 +8,8 @@ import { ProdutoService } from './produto.service';
 import { Produto } from './produto.model';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CardDetailsComponent } from './card/card-details/card-details.component';
 
 
 @Component({
@@ -30,7 +32,8 @@ export class ProdutoComponent {
 
   constructor(
     private produtoService: ProdutoService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -48,6 +51,12 @@ export class ProdutoComponent {
         this.produtos = this.produtos.filter(produto => !deletedIds.includes(produto.id));
       },
       error: (error) => console.error("Erro ao deletar: ", error)
+    });
+  }
+
+  openCardDetails(cardData: Produto): void {
+    const dialogRef = this.dialog.open(CardDetailsComponent, {
+      data: cardData
     });
   }
 

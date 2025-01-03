@@ -1,0 +1,19 @@
+<div class="dialog">
+    <div class="imgSection">
+        <img src="{{produto.imagem}}" alt="">
+    </div>
+    <div class="infoSection">
+        <div class="container">
+            <div class="header-container">
+                <h1>{{produto.nome}}</h1>
+            </div>
+            <p>Categoria: {{produto.categoria}}</p>
+            <p>Tamanho: {{produto.tamanho}}</p>
+            <p>Valor: R$ {{produto.preco}}</p>
+            <div class="btnBar">
+                <button mat-stroked-button (click)="fechar()">Fechar</button>
+                <button mat-raised-button color="primary">Atualizar</button>
+            </div>
+        </div>
+    </div>
+</div>
