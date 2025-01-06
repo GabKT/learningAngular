@@ -1,13 +1,39 @@
 <main>
     <section class="filterSection">
         <h2>Filtros</h2>
+        <div class="filters">
+            <div class="sizeFilter">
+                <h3>Tamanho</h3>
+                <mat-button-toggle-group multiple (change)="onBtnToggleChange($event)">
+                    <mat-button-toggle value="PP">PP</mat-button-toggle>
+                    <mat-button-toggle value="P">P</mat-button-toggle>
+                    <mat-button-toggle value="M">M</mat-button-toggle>
+                    <mat-button-toggle value="G">G</mat-button-toggle>
+                    <mat-button-toggle value="GG">GG</mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+            <div class="priceFilter">
+                <h3>Preço</h3>
+                <div class="titlePrice">
+                    <p>Valor atual: {{value | currency:'BRL'}}</p>
+                </div>
+                <div class="labelPriceFilter">
+                    <label for="">{{min | currency:'BRL'}}</label>
+                    <label for="">{{max | currency:'BRL'}}</label>
+                </div>
+                <mat-slider [max]="max" [min]="min" [step]="step" (input)="onSliderChange()">
+                    <input matSliderThumb #slider [(ngModel)]="value">
+                </mat-slider>
+            </div>
+        </div>
     </section>
     <section class="productList">
-        <div class="headerSearch">
+        <div class="headerSearch mat-elevation-z2">
             <h2>Lista de Produtos</h2>
             <div class="toolBarSearch">
                 <mat-form-field>
-                    <input class="searchInput" matInput placeholder="Pesquisar Produtos">
+                    <input class="searchInput" [(ngModel)]="searchTerm" (input)="onSearch()" matInput
+                        placeholder="Pesquisar Produtos">
                 </mat-form-field>
                 <button mat-raised-button color="primary" (click)="viewCriarProduto()">
                     <mat-icon>add</mat-icon>
@@ -22,8 +48,8 @@
             </div>
         </div>
         <div class="content">
-            <app-card *ngFor="let produto of produtos" [id]="produto.id" [img]="produto.imagem" [nome]="produto.nome"
-                [preco]="produto.preco" (click)="openCardDetails(produto)">
+            <app-card *ngFor="let produto of produtosFiltrados" [id]="produto.id" [img]="produto.imagem"
+                [nome]="produto.nome" [preco]="produto.preco" (click)="openCardDetails(produto)">
             </app-card>
         </div>
     </section>

@@ -2,20 +2,31 @@ main {
     display: flex;
     flex-direction: row;
     height: 100%;
+    overflow: hidden;
 }
 
 .filterSection {
     display: flex;
-    flex-basis: 18%;
+    flex-direction: column;
+    flex-basis: 20vw;
     flex-grow: 0;
     flex-shrink: 0;
-    justify-content: center;
-    border-right: solid 1px black;
+    align-items: center;
+    padding: 5px;
+    box-shadow: 2px 0px 0px rgba(100, 100, 100, 0.5);
+    z-index: 1;
+}
+
+.filters {
+    display: flex;
+    flex-direction: column;
     padding: 10px;
+    gap: 35px;
+    align-items: center;
 }
 
 .productList {
-    flex-basis: 80%;
+    flex-basis: 80vw;
     flex-grow: 0;
     flex-shrink: 0;
     background-color: rgb(236, 236, 236);
@@ -24,7 +35,6 @@ main {
 .headerSearch {
     background-color: white;
     padding: 15px;
-    height: 110px;
 }
 
 .toolBarSearch {
@@ -42,4 +52,27 @@ mat-form-field {
     flex-wrap: wrap;
     gap: 35px;
     padding: 36px;
+}
+
+.labelPriceFilter {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 10px 0 0;
+    width: 100%;
+}
+
+.priceFilter {
+    width: 100%;
+}
+
+mat-slider {
+    width: 100%;
+}
+
+h3 {
+    font-weight: 500;
+}
+
+.titlePrice {
+    display: flex;
 }
