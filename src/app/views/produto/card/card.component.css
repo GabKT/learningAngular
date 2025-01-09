@@ -9,6 +9,10 @@
     height: 75%;
 }
 
+span {
+    font-weight: bolder;
+}
+
 img {
     width: 100%;
     height: 100%;

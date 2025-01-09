@@ -3,13 +3,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { CardComponent } from '../../components/card/card.component';
+import { CardComponent } from './card/card.component';
 import { ProdutoService } from './service/produto.service';
 import { Produto } from './model/produto.model';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { CardDetailsComponent } from '../../components/card/card-details/card-details.component';
+import { CardDetailsComponent } from './card/card-details/card-details.component';
 import { FormsModule } from '@angular/forms'
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSliderModule } from '@angular/material/slider';
@@ -120,6 +120,10 @@ export class ProdutoComponent {
     productFilter.addStrategy(new SearchFilter(this.searchTerm));
 
     this.produtosFiltrados = productFilter.applyFilters(this.produtos);
+  }
+
+  onUnmark(): void {
+    this.cards.map(card => card.selected = false);
   }
 
   viewCriarProduto() {
