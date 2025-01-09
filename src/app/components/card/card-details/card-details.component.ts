@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Produto } from '../../produto.model';
+import { Produto } from '../../../views/produto/model/produto.model';
 import { MatButtonModule } from '@angular/material/button';
 
 

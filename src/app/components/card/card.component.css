@@ -9,7 +9,7 @@
     height: 75%;
 }
 
-img{
+img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -20,7 +20,7 @@ mat-card-header {
 }
 
 .productCard mat-card-title {
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .productCard mat-card-content {
@@ -28,7 +28,19 @@ mat-card-header {
     font-size: 10px;
 }
 
-mat-checkbox{
+p strong {
+    font-size: small;
+}
+
+p {
+    font-size: 12px;
+}
+
+.contentCard {
+    padding: 0px 6px;
+}
+
+mat-checkbox {
     transform: scale(0.8);
     position: absolute;
     top: 8px;

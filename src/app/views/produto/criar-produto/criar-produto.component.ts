@@ -6,8 +6,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Produto } from '../produto.model';
-import { ProdutoService } from '../produto.service';
+import { Produto } from '../model/produto.model';
+import { ProdutoService } from '../service/produto.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
@@ -41,13 +41,13 @@ export class CriarProdutoComponent {
     private router: Router,
     private produtoService: ProdutoService,
     private formBuilder: FormBuilder
-  ) { 
+  ) {
     this.cadastroForm = this.formBuilder.group({
       nome: ['', Validators.required],
       categoria: ['', Validators.required],
       preco: [0.0, Validators.required],
       tamanho: ['', Validators.required],
-      imagem: ['', ]
+      imagem: ['',]
     })
   }
 
@@ -69,42 +69,42 @@ export class CriarProdutoComponent {
     }
   }
 
-  onSubmit(){
-    if(this.cadastroForm.valid){
+  onSubmit() {
+    if (this.cadastroForm.valid) {
       const formData = this.cadastroForm.value
       formData.imagem = this.base64Image
       this.produtoService.insertProduct(formData).subscribe(
-        (value: Produto)=>{
-        console.log("Produto cadastrado : ", value);
-        alert("Cadastro feito com sucesso")
-        this.cadastroForm.reset();
-      },
-        (error: any)=>{
+        (value: Produto) => {
+          console.log("Produto cadastrado : ", value);
+          alert("Cadastro feito com sucesso")
+          this.cadastroForm.reset();
+        },
+        (error: any) => {
           console.error("Erro ao cadastrar ", error)
         }
-    )
-      
+      )
+
     } else {
       alert("Preencha todos os campos corretamente")
     }
   }
 
   convertToBase64(file: File): Promise<string> {
-    return new Promise((resolve, reject)=>{
-        const reader = new FileReader();
-        reader.onload = () => {
-          if(reader.result){
-            resolve(reader.result.toString());
-          } else {
-            reject("Nao foi possivel ler");
-          }
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          resolve(reader.result.toString());
+        } else {
+          reject("Nao foi possivel ler");
         }
+      }
 
-        reader.onerror = () => {
-          reject("Erro ao ler");
-        }
+      reader.onerror = () => {
+        reject("Erro ao ler");
+      }
 
-        reader.readAsDataURL(file)
+      reader.readAsDataURL(file)
     });
   }
 

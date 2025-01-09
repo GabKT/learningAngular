@@ -3,17 +3,20 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { CardComponent } from './card/card.component';
-import { ProdutoService } from './produto.service';
-import { Produto } from './produto.model';
+import { CardComponent } from '../../components/card/card.component';
+import { ProdutoService } from './service/produto.service';
+import { Produto } from './model/produto.model';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { CardDetailsComponent } from './card/card-details/card-details.component';
+import { CardDetailsComponent } from '../../components/card/card-details/card-details.component';
 import { FormsModule } from '@angular/forms'
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSliderModule } from '@angular/material/slider';
-import { max } from 'rxjs';
+import { ProductFilter } from '../../core/filters/product-filter.strategy';
+import { SizeFilter } from '../../core/filters/size-filter.strategy';
+import { PriceFilter } from '../../core/filters/price-filter.strategy';
+import { SearchFilter } from '../../core/filters/search-filter.strategy';
 
 
 @Component({
@@ -82,43 +85,41 @@ export class ProdutoComponent {
     });
   }
 
-  onSearch(): void {
-    this.produtosFiltrados = this.produtos.filter(produto => produto.nome.toLowerCase().includes(this.searchTerm.toLowerCase()))
-  }
-
   openCardDetails(cardData: Produto): void {
     const dialogRef = this.dialog.open(CardDetailsComponent, {
-      width: '1000px',
-      height: '550px',
+      // width: '1000px',
+      // height: '550px',
+      width: '60%',
+      height: '60%',
       data: cardData
     });
   }
 
+  onSearch(): void {
+    const productFilter = new ProductFilter();
+    productFilter.addStrategy(new SearchFilter(this.searchTerm));
+    productFilter.addStrategy(new SizeFilter(this.selectedSizes));
+    productFilter.addStrategy(new PriceFilter(this.value));
+
+    this.produtosFiltrados = productFilter.applyFilters(this.produtos);
+  }
+
   onSliderChange(): void {
-    if (this.selectedSizes.length != 0) {
-      this.produtosFiltrados = this.produtos.filter(e => e.preco < this.value && this.selectedSizes.includes(e.tamanho));
-    }
-    if (this.selectedSizes.length == 0) {
-      this.produtosFiltrados = this.produtos.filter(e => e.preco < this.value);
-    }
-    if (this.value == 0.0) {
-      this.produtosFiltrados = this.produtos
-    }
+    const productFilter = new ProductFilter();
+    productFilter.addStrategy(new PriceFilter(this.value));
+    productFilter.addStrategy(new SearchFilter(this.searchTerm));
+
+    this.produtosFiltrados = productFilter.applyFilters(this.produtos);
   }
 
   onBtnToggleChange(event: any): void {
     this.selectedSizes = event.value;
-    if (this.value != 0.0) {
+    const productFilter = new ProductFilter();
+    productFilter.addStrategy(new SizeFilter(this.selectedSizes));
+    productFilter.addStrategy(new PriceFilter(this.value));
+    productFilter.addStrategy(new SearchFilter(this.searchTerm));
 
-      if (this.selectedSizes.length == 0) {
-        this.produtosFiltrados = this.produtosFiltrados.filter(e => this.selectedSizes.includes(e.tamanho) && e.preco < this.value)
-      } else {
-        this.produtosFiltrados = this.produtos.filter(e => this.selectedSizes.includes(e.tamanho) && e.preco < this.value)
-      }
-
-    } else {
-      this.produtosFiltrados = this.produtos.filter(e => this.selectedSizes.includes(e.tamanho))
-    }
+    this.produtosFiltrados = productFilter.applyFilters(this.produtos);
   }
 
   viewCriarProduto() {
