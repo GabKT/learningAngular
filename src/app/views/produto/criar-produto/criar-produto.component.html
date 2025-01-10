@@ -1,5 +1,5 @@
 <main>
-    <header>
+    <header class="mat-elevation-z2">
         <button mat-flat-button (click)="mainViewProduto()">
             <mat-icon>
                 keyboard_backspace
@@ -8,57 +8,57 @@
         </button>
         <h2>Cadastrar novo produto</h2>
     </header>
-    <div class="content">
-        <div class="form-section">
-            <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
-                <p>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Nome</mat-label>
-                        <input matInput formControlName="nome">
-                    </mat-form-field>
-                </p>
+    <div class="content mat-elevation-z2">
+        <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input matInput formControlName="nome">
+                </mat-form-field>
+            </p>
 
-                <p>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Categoria</mat-label>
-                        <mat-select formControlName="categoria">
-                            @for(categoria of categorias; track categoria){
-                            <mat-option [value]="categoria">{{categoria}}</mat-option>
-                            }
-                        </mat-select>
-                    </mat-form-field>
-                </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Categoria</mat-label>
+                    <mat-select formControlName="categoria">
+                        @for(categoria of categorias; track categoria){
+                        <mat-option [value]="categoria">{{categoria}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </p>
 
-                <p>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Preço</mat-label>
-                        <input matInput type="text" name="" id="" formControlName="preco">
-                    </mat-form-field>
-                </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Preço</mat-label>
+                    <input matInput type="text" name="" id="" formControlName="preco">
+                </mat-form-field>
+            </p>
 
-                <p>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Tamanho</mat-label>
-                        <mat-select formControlName="tamanho">
-                            @for(value of tamanhos; track value){
-                            <mat-option [value]="value">{{value}}</mat-option>
-                            }
-                        </mat-select>
-                    </mat-form-field>
-                </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Tamanho</mat-label>
+                    <mat-select formControlName="tamanho">
+                        @for(value of tamanhos; track value){
+                        <mat-option [value]="value">{{value}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </p>
 
-                <p>
-                    <span>Imagem selecionada: {{ selectedFile ? selectedFile.name : 'nada' }}</span><br>
-                    <input #fileInput type="file" accept="image/*" hidden (change)="onSelectedFile($event)" />
-                    <button mat-stroked-button type="button" (click)="fileInput.click()">
-                        <mat-icon>cloud_upload</mat-icon>
-                        Adicionar imagem
-                    </button>
-                </p>
-                <button mat-flat-button color="primary" type="submit">Cadastrar</button>
-            </form>
+            <p>
 
+                <input #fileInput type="file" accept="image/*" hidden (change)="onSelectedFile($event)" />
+                <button mat-stroked-button type="button" (click)="fileInput.click()">
+                    <mat-icon>cloud_upload</mat-icon>
+                    Adicionar imagem
+                </button>
+            </p>
+            <button mat-flat-button color="primary" type="submit">Cadastrar</button>
+        </form>
+        <div>
+            <span>Imagem selecionada: {{ selectedFile ? selectedFile.name : 'nada' }}</span><br><br>
+            <img [src]=[base64Image] alt="">
         </div>
-        <img [src]=[base64Image] alt="">
     </div>
 </main>

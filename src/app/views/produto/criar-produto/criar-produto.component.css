@@ -1,13 +1,19 @@
 main {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    height: 94%;
+    gap: 100px;
+    background-color: rgb(238, 238, 238);
 }
 
 header {
     display: flex;
     align-items: center;
+    width: 98%;
     padding: 15px;
     gap: 25px;
+    background-color: rgb(253, 253, 255);
 }
 
 h2 {
@@ -15,24 +21,27 @@ h2 {
 }
 
 .content {
+    background-color: rgb(253, 253, 255);
     display: flex;
-    padding: 10px 30px;
-    width: 96%;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 60%;
+    padding: 40px 60px;
+    gap: 100px;
 }
 
-.form-section {
+form {
     display: flex;
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-direction: column;
-    flex-basis: 20%;
+    gap: 20px;
+    flex-wrap: wrap;
+    flex-basis: 45%;
 }
 
 img {
     display: flex;
     flex-grow: 0;
     flex-shrink: 0;
-    flex-basis: 10%;
+    flex-basis: 40%;
     max-width: 400px;
-    max-height: 400px;
+    height: 350px;
 }
