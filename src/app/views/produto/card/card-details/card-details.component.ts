@@ -29,8 +29,8 @@ export class CardDetailsComponent {
 
   onUpdateProduct(): void {
     this.dialog.open(UpdateProductDialogComponent, {
-      width: "50%",
-      height: "50%",
+      width: "55%",
+      height: "55%",
       data: this.produto
     });
   }

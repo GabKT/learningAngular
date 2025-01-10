@@ -1,10 +1,16 @@
 .main {
     display: flex;
     padding: 20px;
+    height: 90%;
 }
 
 .formSection {
-    flex-basis: 85%;
+    padding: 20px;
+    flex-basis: 65%;
+}
+
+.imgSection {
+    padding: 20px;
 }
 
 form {

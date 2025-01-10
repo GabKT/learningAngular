@@ -35,6 +35,24 @@ export class CriarProdutoComponent {
     "PP", "P", "M", "G", "GG"
   ];
 
+  categorias: string[] = [
+    "Calças",
+    "Camisetas",
+    "Vestidos",
+    "Jaquetas",
+    "Saias",
+    "Shorts",
+    "Blusas",
+    "Casacos",
+    "Macacões",
+    "Conjuntos",
+    "Roupas Íntimas",
+    "Roupas de Banho",
+    "Roupas de Academia",
+    "Acessórios",
+    "Calçados"
+  ];
+
   cadastroForm: FormGroup;
 
   constructor(
@@ -47,7 +65,7 @@ export class CriarProdutoComponent {
       categoria: ['', Validators.required],
       preco: [0.0, Validators.required],
       tamanho: ['', Validators.required],
-      imagem: ['',]
+      imagem: ['', Validators.required]
     })
   }
 
@@ -62,7 +80,7 @@ export class CriarProdutoComponent {
       if (input.files[0].size < 5000000) {
         this.selectedFile = input.files[0];
         this.base64Image = await this.convertToBase64(this.selectedFile);
-
+        this.cadastroForm.get('imagem')?.setValue(this.base64Image);
       } else {
         alert("Imagem tem que ser menos que 5MB");
       }
@@ -72,12 +90,11 @@ export class CriarProdutoComponent {
   onSubmit() {
     if (this.cadastroForm.valid) {
       const formData = this.cadastroForm.value
-      formData.imagem = this.base64Image
       this.produtoService.insertProduct(formData).subscribe(
         (value: Produto) => {
           console.log("Produto cadastrado : ", value);
           alert("Cadastro feito com sucesso")
-          this.cadastroForm.reset();
+          window.location.reload();
         },
         (error: any) => {
           console.error("Erro ao cadastrar ", error)

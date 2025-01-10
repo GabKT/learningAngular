@@ -66,7 +66,7 @@ export class ProdutoComponent {
       next: (data: Produto[]) => {
         this.produtos = data;
         this.produtosFiltrados = this.produtos;
-        this.max = (Math.max(...this.produtos.map(produto => produto.preco))) * 1.001;
+        this.max = (Math.max(...this.produtos.map(produto => produto.preco))) * 1.01;
         this.step = this.max * 0.01
       },
       error: (err) => console.error("erro ao carregar produtos", err)
@@ -107,6 +107,7 @@ export class ProdutoComponent {
   onSliderChange(): void {
     const productFilter = new ProductFilter();
     productFilter.addStrategy(new PriceFilter(this.value));
+    productFilter.addStrategy(new SizeFilter(this.selectedSizes));
     productFilter.addStrategy(new SearchFilter(this.searchTerm));
 
     this.produtosFiltrados = productFilter.applyFilters(this.produtos);

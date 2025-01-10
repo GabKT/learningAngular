@@ -1,14 +1,13 @@
 main {
     display: flex;
     flex-direction: row;
-    height: 100%;
-    overflow: hidden;
+    min-height: 94%;
 }
 
 .filterSection {
     display: flex;
     flex-direction: column;
-    flex-basis: 20vw;
+    flex-basis: 18vw;
     flex-grow: 0;
     flex-shrink: 0;
     align-items: center;

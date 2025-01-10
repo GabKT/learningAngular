@@ -1,46 +1,58 @@
 <div class="main">
     <div class="formSection">
         <h2>Atualizar produto</h2>
-        <form>
+        <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
             <p>
                 <mat-form-field appearance="outline">
                     <mat-label>Nome</mat-label>
-                    <input matInput type="text" value="{{produto.nome}}">
+                    <input matInput formControlName="nome" type="text">
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field appearance="outline">
                     <mat-label>Categoria</mat-label>
-                    <input matInput type="text" value="{{produto.categoria}}">
+                    <mat-select formControlName="categoria">
+                        @for(valor of categorias; track valor){
+                        <mat-option [value]="valor">{{valor}}</mat-option>
+                        }
+                    </mat-select>
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field appearance="outline">
                     <mat-label>Tamanho</mat-label>
-                    <mat-select>
-                        <mat-option>example</mat-option>
+                    <mat-select formControlName="tamanho">
+                        @for(tamanho of tamanhos; track tamanho){
+                        <mat-option [value]="tamanho">{{tamanho}}</mat-option>
+                        }
                     </mat-select>
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field appearance="outline">
                     <mat-label>Preço</mat-label>
-                    <input matInput type="text" name="" id="" value="{{produto.preco}}">
+                    <input matInput formControlName="preco" type="text">
                 </mat-form-field>
             </p>
             <p>
-                <button mat-stroked-button type="button">
+                <input #fileInput type="file" accept="image/*" hidden (change)="onSelectedFile($event)">
+                <button mat-stroked-button type="button" (click)="fileInput.click()">
                     <mat-icon>cloud_upload</mat-icon>
                     Alterar imagem
                 </button>
             </p>
 
 
-            <button mat-raised-button color="primary" type="submit">Cadastrar</button>
+            <button mat-raised-button color="primary" type="submit">Atualizar</button>
         </form>
     </div>
     <div class="imgSection">
         <p>Imagem: </p>
         <img src="{{produto.imagem}}" alt="">
+    </div>
+    <div>
+        <mat-icon (click)="close()">
+            close
+        </mat-icon>
     </div>
 </div>

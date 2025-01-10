@@ -21,7 +21,11 @@
                 <p>
                     <mat-form-field appearance="outline">
                         <mat-label>Categoria</mat-label>
-                        <input matInput type="text" name="" id="" formControlName="categoria">
+                        <mat-select formControlName="categoria">
+                            @for(categoria of categorias; track categoria){
+                            <mat-option [value]="categoria">{{categoria}}</mat-option>
+                            }
+                        </mat-select>
                     </mat-form-field>
                 </p>
 
