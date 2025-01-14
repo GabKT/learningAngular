@@ -28,7 +28,7 @@ main {
     flex-basis: 80vw;
     flex-grow: 0;
     flex-shrink: 0;
-    background-color: rgb(236, 236, 236);
+    background: linear-gradient(0deg, rgba(14, 0, 255, 0.6) 0%, rgba(36, 36, 255, 0.6) 54%, rgba(42, 85, 255, 0.6) 100%);
 }
 
 .headerSearch {

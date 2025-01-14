@@ -1,0 +1,39 @@
+<main>
+    <div class="cardRegister">
+        <div class="content">
+            <h2>Register</h2>
+            <form [formGroup]="registerForm">
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nome</mat-label>
+                        <input matInput type="text" formControlName="name">
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput type="email" formControlName="email">
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Senha</mat-label>
+                        <input matInput type="password" formControlName="password">
+                    </mat-form-field>
+                </p>
+                <div>
+                    <h4>Escolha o tipo de cadastro</h4>
+                    <mat-radio-group formControlName="role">
+                        <mat-radio-button value="USER">User</mat-radio-button>
+                        <mat-radio-button value="ADMIN">Admin</mat-radio-button>
+                    </mat-radio-group>
+                    <br>
+                </div>
+                <div class="buttonBar">
+                    <button mat-flat-button color="primary" type="submit" (click)="onSubmit()">Cadastrar</button>
+                    <button mat-stroked-button (click)="goToLogin()">Ir para Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

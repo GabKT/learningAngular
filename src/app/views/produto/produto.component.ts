@@ -17,6 +17,7 @@ import { ProductFilter } from '../../core/filters/product-filter.strategy';
 import { SizeFilter } from '../../core/filters/size-filter.strategy';
 import { PriceFilter } from '../../core/filters/price-filter.strategy';
 import { SearchFilter } from '../../core/filters/search-filter.strategy';
+import { AuthService } from '../auth/service/auth.service';
 
 
 @Component({
@@ -58,7 +59,8 @@ export class ProdutoComponent {
   constructor(
     private produtoService: ProdutoService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -125,6 +127,10 @@ export class ProdutoComponent {
 
   onUnmark(): void {
     this.cards.map(card => card.selected = false);
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 
   viewCriarProduto() {

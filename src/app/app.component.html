@@ -1,3 +1,4 @@
-<app-nav></app-nav>
+<ng-container *ngIf="!isLoginRoute()">
+    <app-nav></app-nav> <!-- Nav será exibido apenas fora da rota de login -->
+</ng-container>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
