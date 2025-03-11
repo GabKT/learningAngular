@@ -1,4 +1,4 @@
-<ng-container *ngIf="!isLoginRoute()">
+<ng-container *ngIf="isAdminSection()">
     <app-nav></app-nav> <!-- Nav será exibido apenas fora da rota de login -->
 </ng-container>
 <router-outlet></router-outlet>

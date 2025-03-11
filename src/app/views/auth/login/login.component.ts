@@ -47,8 +47,10 @@ export class LoginComponent implements OnInit {
         next: (response) => {
           if (response) {
             alert("Login feito com sucesso!");
-            if (this.authService.isUserLoggedIn()) {
+            if (this.authService.isUserLoggedIn() && this.authService.getUserRoles() == "admin") {
               this.router.navigate(["/home"]);
+            } else if (this.authService.isUserLoggedIn() && this.authService.getUserRoles() == "user") {
+              this.router.navigate(["/main"]);
             }
           }
         },

@@ -30,12 +30,21 @@ export class AuthService {
     )
   }
 
-  register(user: User): Observable<any> {
-    return this.http.post<any>(this.baseUrl + "/register", user)
+  register(user: User): Observable<User> {
+    return this.http.post<User>(this.baseUrl + "/register", user)
   }
 
   getAuthenticationToken(): string | null {
     return localStorage.getItem(this.authToken);
+  }
+
+  getUserRoles(): string {
+    const token = this.getAuthenticationToken();
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      return decodedToken.roles
+    }
+    return "";
   }
 
   getTokenExpirationDate(token: string): Date | null {

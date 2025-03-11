@@ -38,7 +38,17 @@ export class RegisterComponent {
   onSubmit(): void {
     if (this.registerForm.valid) {
       const formData = this.registerForm.value
-
+      this.authService.register(formData).subscribe({
+        next: (response) => {
+          console.log(response);
+          alert("Cadastro feito com sucesso!");
+          this.registerForm.reset();
+        },
+        error: (error) => {
+          alert("Erro ao registrar-se");
+          console.error("Erro ao registrar-se ", error);
+        }
+      })
     }
   }
 

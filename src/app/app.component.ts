@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { NavComponent } from './components/template/nav/nav.component';
 import { CommonModule } from '@angular/common';
+import { AuthService } from './views/auth/service/auth.service';
 
 
 @Component({
@@ -18,10 +19,11 @@ export class AppComponent {
 
   title = 'GABKT App';
 
-  constructor(private router: Router) { }
+  constructor(private authService: AuthService) { }
 
-  isLoginRoute(): boolean {
-    return ["/login", "/register"].includes(this.router.url);
+  isAdminSection(): boolean {
+    const role = this.authService.getUserRoles();
+    return role == "admin" && this.authService.isUserLoggedIn() ? true : false;
   }
 
 }
